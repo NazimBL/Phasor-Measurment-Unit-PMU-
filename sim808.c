@@ -53,13 +53,11 @@ void Get_NMEA(){
 void GPRS_Config(){
 
    char ap_cnt = 0;
-   memset(rx_buff,0,64);
-   
+   memset(rx_buff,0,64);   
    UART3_Write_Text("Setting STA mode");
    UART3_Write_Text("Please wait...");
    AT_Write("AT+CWMODE=1");                                                //change the working mode to 1
-   while(!response_success()); 
-                                                                           //wait to respond success 
+   while(!response_success());                                                    //wait to respond success 
    UART3_Write_Text("Setting connection mode");
    UART3_Write_Text("Please wait...");
    AT_Write("AT+CIPMUX=0");                                                //change the connection mode to 1
@@ -74,7 +72,6 @@ void GPRS_Config(){
    {                                                              
      UART3_Write_Text("Connect to ISP");
      UART3_Write_Text("Please wait...");
-     
      UART1_Write_Text("AT+CSTT=");
      UART1_Write('"');
      UART1_Write_Text(APN);
@@ -125,8 +122,6 @@ void Send_UDP(){
     UART1_Write(CR);
     UART1_Write(LF);
     while(!response_success());
-  
-
 }
 
 void Get_IP()
